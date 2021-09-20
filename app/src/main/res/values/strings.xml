@@ -2,4 +2,9 @@
     <string name="app_name">ChessClock</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="classic">Classic Chess</string>
+    <string name="Rapid">Rapid Chess</string>
+    <string name="Blitz">Blitz Chess</string>
+    <string name="Bullet">Bullet Chess</string>
+    <string name="formats_title">"Select a Time Format to practice and learn to control the time pressure. "</string>
 </resources>

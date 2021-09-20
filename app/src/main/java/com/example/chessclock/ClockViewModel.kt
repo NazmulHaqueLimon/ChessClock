@@ -1,26 +1,72 @@
 package com.example.chessclock
 
 import android.os.CountDownTimer
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
 class ClockViewModel : ViewModel() {
 
-    private val _startTime =MutableLiveData<Int>()
-    val startTime:LiveData<Int> = _startTime
+    private var startTimeMillis:Long =600000 //10 minits
 
-    private var isRunning: Boolean =false
-    private val isTimerStop : Boolean =false
 
-    private val timer=CountDownTimer
+    private var playerATimeLeft :Long =startTimeMillis
+    private var playerBTimeLeft :Long =startTimeMillis
 
-    fun startTimer(){
-        if(isRunning && isTimerStop){
-            isRunning =false
+    private val interval:Long =1000
+
+    private var isPlayerARunning: Boolean =false
+    private var isPlayerBRunning :Boolean =false
+
+    private var isAnyTimerStop : Boolean =false
+
+
+    fun setFormat(gameTime:Long,increment:Long){
+        startTimeMillis =gameTime
+    }
+
+
+    //private val timer: ChessTimer(startTime,)
+    fun startPlayerATimer(){
+        if(isPlayerARunning && isAnyTimerStop){
+            isAnyTimerStop =false
+        }
+        playerATimer.start()
+    }
+
+    fun startPlayerBTimer(){
+        if(isPlayerARunning && isAnyTimerStop){
+            isAnyTimerStop =false
+        }
+        playerBTimer.start()
+    }
+
+
+    fun pauseTimer(){
+        playerATimer.cancel()
+        playerBTimer.cancel()
+    }
+    fun updatePlayerATimer(){}
+    fun updatePlayerBTimer(){}
+
+
+    private val playerATimer = object :CountDownTimer(playerATimeLeft,interval ) {
+        override fun onTick(millisUntilFinished: Long) {
+            //every 1000th millisecond the timer updates
+            playerATimeLeft = millisUntilFinished
+
+        }
+        override fun onFinish() {
+
+            isAnyTimerStop =true
         }
     }
-    fun pauseTimer(){}
-    fun updateTime(){}
+    private val playerBTimer = object :CountDownTimer(playerBTimeLeft,interval ) {
+        override fun onTick(millisUntilFinished: Long) {
+            //every 1000th millisecond the timer updates
+            playerBTimeLeft =millisUntilFinished
+        }
+        override fun onFinish() {
+            isAnyTimerStop =true
+        }
+    }
 
 }

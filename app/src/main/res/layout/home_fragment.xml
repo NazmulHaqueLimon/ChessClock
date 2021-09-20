@@ -11,7 +11,7 @@
         >
 
         <com.google.android.material.card.MaterialCardView
-            android:id="@+id/materialCardView2"
+            android:id="@+id/playerAClock"
             android:layout_width="match_parent"
             android:layout_height="260dp"
             android:layout_marginStart="24dp"
@@ -26,14 +26,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 >
+
                 <TextView
-                    android:id="@+id/editTextTime"
-                    android:layout_width="107dp"
-                    android:layout_height="69dp"
+                    android:id="@+id/playerATime"
+                    android:layout_width="194dp"
+                    android:layout_height="124dp"
                     android:inputType="time"
                     android:text="5:00"
                     android:textAlignment="center"
-                    android:textSize="50sp"
+                    android:textSize="80sp"
+                    android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -46,6 +48,7 @@
                     android:layout_marginStart="8dp"
                     android:layout_marginBottom="8dp"
                     android:text="Total Moves :"
+                    android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent" />
 
@@ -57,12 +60,23 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:srcCompat="@drawable/ic_chess_piece" />
+
+                <TextView
+                    android:id="@+id/playerAMoves"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="6dp"
+                    android:layout_marginBottom="8dp"
+                    android:text="TextView"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/textView" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </com.google.android.material.card.MaterialCardView>
 
         <com.google.android.material.card.MaterialCardView
-            android:id="@+id/materialCardView"
+            android:id="@+id/playerBClock"
             android:layout_width="match_parent"
             android:layout_height="260dp"
             android:layout_marginStart="24dp"
@@ -77,6 +91,17 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
+                <TextView
+                    android:id="@+id/playerBMoves"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="3dp"
+                    android:layout_marginTop="8dp"
+                    android:text="TextView"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toEndOf="@+id/textView2"
+                    app:layout_constraintTop_toTopOf="parent" />
+
                 <ImageView
                     android:id="@+id/imageView5"
                     android:layout_width="49dp"
@@ -87,18 +112,20 @@
                     app:srcCompat="@drawable/ic_chess_piece" />
 
                 <TextView
-                    android:id="@+id/editTextTime2"
-                    android:layout_width="107dp"
-                    android:layout_height="69dp"
+                    android:id="@+id/playerBTime"
+                    android:layout_width="174dp"
+                    android:layout_height="111dp"
                     android:ems="10"
-                    android:textAlignment="center"
-                    android:inputType="time"
                     android:text="5:00"
-                    android:textSize="40sp"
+                    android:textAlignment="center"
+                    android:textSize="80sp"
+                    android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.497"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.503" />
 
                 <TextView
                     android:id="@+id/textView2"
@@ -107,6 +134,7 @@
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="8dp"
                     android:text="Total Moves :"
+                    android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -114,7 +142,7 @@
         </com.google.android.material.card.MaterialCardView>
 
         <ImageView
-            android:id="@+id/imageView"
+            android:id="@+id/settingsButton"
             android:layout_width="88dp"
             android:layout_height="59dp"
             android:layout_marginStart="24dp"
@@ -122,33 +150,43 @@
             android:layout_marginEnd="80dp"
             android:layout_marginBottom="54dp"
             android:src="@drawable/outline_settings_suggest_20"
-            app:layout_constraintBottom_toTopOf="@+id/materialCardView"
+            app:layout_constraintBottom_toTopOf="@+id/playerBClock"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toEndOf="@+id/imageView2"
-            app:layout_constraintTop_toBottomOf="@+id/materialCardView2"
+            app:layout_constraintStart_toEndOf="@+id/startButton"
+            app:layout_constraintTop_toBottomOf="@+id/playerAClock"
             app:layout_constraintVertical_bias="0.588" />
 
         <ImageView
-            android:id="@+id/imageView2"
+            android:id="@+id/startButton"
             android:layout_width="91dp"
             android:layout_height="62dp"
             android:layout_marginStart="32dp"
             android:src="@drawable/outline_skip_next_24"
-            app:layout_constraintBottom_toTopOf="@+id/materialCardView"
-            app:layout_constraintStart_toEndOf="@+id/imageView3"
-            app:layout_constraintTop_toBottomOf="@+id/materialCardView2"
+            app:layout_constraintBottom_toTopOf="@+id/playerBClock"
+            app:layout_constraintStart_toEndOf="@+id/resetButton"
+            app:layout_constraintTop_toBottomOf="@+id/playerAClock"
+            app:layout_constraintVertical_bias="0.475" />
+        <ImageView
+            android:id="@+id/pauseButton"
+            android:layout_width="91dp"
+            android:layout_height="62dp"
+            android:layout_marginStart="32dp"
+            android:src="@drawable/outline_skip_next_24"
+            app:layout_constraintBottom_toTopOf="@+id/playerBClock"
+            app:layout_constraintStart_toEndOf="@+id/resetButton"
+            app:layout_constraintTop_toBottomOf="@+id/playerAClock"
             app:layout_constraintVertical_bias="0.475" />
 
         <ImageView
-            android:id="@+id/imageView3"
+            android:id="@+id/resetButton"
             android:layout_width="82dp"
             android:layout_height="61dp"
             android:layout_marginStart="52dp"
             android:src="@drawable/outline_restart_alt_24"
-            app:layout_constraintBottom_toTopOf="@+id/materialCardView"
+            app:layout_constraintBottom_toTopOf="@+id/playerBClock"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/materialCardView2"
+            app:layout_constraintTop_toBottomOf="@+id/playerAClock"
             app:layout_constraintVertical_bias="0.476" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
