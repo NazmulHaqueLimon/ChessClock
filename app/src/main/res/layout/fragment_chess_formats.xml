@@ -37,6 +37,7 @@
                 android:layout_height="match_parent"
                 android:layout_marginEnd="2dp"
                 android:layout_weight="1"
+                android:focusable="true"
                 android:backgroundTint="#DF876B"
                 android:text="60 min" />
 
@@ -46,6 +47,7 @@
                 android:layout_height="match_parent"
                 android:layout_marginEnd="2dp"
                 android:layout_weight="1"
+                android:focusable="true"
                 android:backgroundTint="#DF876B"
                 android:text="30 min" />
 
@@ -54,6 +56,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
+                android:focusable="true"
                 android:backgroundTint="#DF876B"
                 android:text="45 | 45" />
         </LinearLayout>
@@ -86,6 +89,7 @@
                 android:layout_height="match_parent"
                 android:layout_marginEnd="2dp"
                 android:layout_weight="1"
+                android:focusable="true"
                 android:backgroundTint="#DF876B"
                 android:text="10 | 5" />
 
@@ -95,6 +99,7 @@
                 android:layout_height="match_parent"
                 android:layout_marginEnd="2dp"
                 android:layout_weight="1"
+                android:focusable="true"
                 android:backgroundTint="#DF876B"
                 android:text="15 | 10" />
 
@@ -103,6 +108,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
+                android:focusable="true"
                 android:backgroundTint="#DF876B"
                 android:text="20 | 5" />
         </LinearLayout>
@@ -134,6 +140,7 @@
                 android:layout_height="match_parent"
                 android:layout_marginEnd="2dp"
                 android:layout_weight="1"
+                android:focusable="true"
                 android:backgroundTint="#DF876B"
                 android:text="5 | 2" />
 
@@ -143,6 +150,7 @@
                 android:layout_height="match_parent"
                 android:layout_marginEnd="2dp"
                 android:layout_weight="1"
+                android:focusable="true"
                 android:backgroundTint="#DF876B"
                 android:text="3 | 2" />
 
@@ -151,6 +159,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
+                android:focusable="true"
                 android:backgroundTint="#DF876B"
                 android:text="5 | 5" />
         </LinearLayout>
@@ -181,6 +190,7 @@
                 android:layout_height="match_parent"
                 android:layout_marginEnd="2dp"
                 android:layout_weight="1"
+                android:focusable="true"
                 android:backgroundTint="#DF876B"
                 android:text="1 | 2" />
 
@@ -190,6 +200,7 @@
                 android:layout_height="match_parent"
                 android:layout_marginEnd="2dp"
                 android:layout_weight="1"
+                android:focusable="true"
                 android:backgroundTint="#DF876B"
                 android:text="2 | 1" />
 
@@ -198,6 +209,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
+                android:focusable="true"
                 android:backgroundTint="#DF876B"
                 android:text="2 | 2" />
         </LinearLayout>
@@ -216,9 +228,9 @@
         <TextView
             android:id="@+id/textView3"
             android:layout_width="345dp"
-            android:layout_height="50dp"
+            android:layout_height="wrap_content"
             android:text="@string/formats_title"
-            android:textSize="16sp"
+            android:textSize="20sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

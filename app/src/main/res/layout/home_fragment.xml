@@ -3,6 +3,11 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="viewModel"
+            type="com.example.chessclock.ClockViewModel" />
+    </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -18,6 +23,9 @@
             android:layout_marginTop="32dp"
             android:layout_marginEnd="24dp"
             app:cardBackgroundColor="#DF876B"
+            android:clickable="true"
+            android:onClick=""
+            app:cardElevation="10dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -29,13 +37,14 @@
 
                 <TextView
                     android:id="@+id/playerATime"
-                    android:layout_width="194dp"
-                    android:layout_height="124dp"
+                    android:layout_width="249dp"
+                    android:layout_height="129dp"
                     android:inputType="time"
-                    android:text="5:00"
+                    android:text="00:00"
                     android:textAlignment="center"
                     android:textSize="80sp"
                     android:textStyle="bold"
+                    app:displayTimer="@{viewModel.playerATimeLeftMillies}"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -82,6 +91,8 @@
             android:layout_marginStart="24dp"
             android:layout_marginEnd="24dp"
             android:layout_marginBottom="32dp"
+            android:clickable="true"
+            app:cardElevation="10dp"
             app:cardBackgroundColor="#8E96C5"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -113,13 +124,14 @@
 
                 <TextView
                     android:id="@+id/playerBTime"
-                    android:layout_width="174dp"
-                    android:layout_height="111dp"
+                    android:layout_width="231dp"
+                    android:layout_height="120dp"
                     android:ems="10"
-                    android:text="5:00"
+                    android:text="00:00"
                     android:textAlignment="center"
                     android:textSize="80sp"
                     android:textStyle="bold"
+                    app:displayTimer="@{viewModel.playerBTimeLeftMillies}"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.497"
@@ -183,6 +195,7 @@
             android:layout_width="82dp"
             android:layout_height="61dp"
             android:layout_marginStart="52dp"
+            android:onClick="@{()->viewModel.resetClock()}"
             android:src="@drawable/outline_restart_alt_24"
             app:layout_constraintBottom_toTopOf="@+id/playerBClock"
             app:layout_constraintStart_toStartOf="parent"

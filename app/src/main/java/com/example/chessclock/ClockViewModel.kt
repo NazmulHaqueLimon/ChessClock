@@ -1,39 +1,70 @@
 package com.example.chessclock
 
 import android.os.CountDownTimer
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
 class ClockViewModel : ViewModel() {
 
-    private var startTimeMillis:Long =600000 //10 minits
+    /**
+     * selected clock time
+     */
+    private val startTimeMillis =MutableLiveData<Long>(600000)
+
+    /**
+     * clock increment for every move
+     */
+    private val _increment =MutableLiveData<Long>(0)
+    private val increment:LiveData<Long> =_increment
+
+    /**
+     * playerA left time....converted in binding adapter
+     */
+    private val _playerATimeLeftMillies =startTimeMillis
+    val playerATimeLeftMillies:LiveData<Long> = _playerATimeLeftMillies
+
+    /**
+     * playerB left time....converted in binding adapter
+     */
+    private val _playerBTimeLeftMillies =startTimeMillis
+    val playerBTimeLeftMillies:LiveData<Long> = _playerBTimeLeftMillies
 
 
-    private var playerATimeLeft :Long =startTimeMillis
-    private var playerBTimeLeft :Long =startTimeMillis
+    var isPlayerARunning: Boolean =false
+    var isPlayerBRunning :Boolean =false
 
-    private val interval:Long =1000
+    var isAnyTimerStop : Boolean =false
 
-    private var isPlayerARunning: Boolean =false
-    private var isPlayerBRunning :Boolean =false
+    private val _playerAMoves =MutableLiveData<Int>(0)
+    val playerAMoves :LiveData<Int> =_playerAMoves
 
-    private var isAnyTimerStop : Boolean =false
+    private val _playerBMoves =MutableLiveData<Int>(0)
+    val playerBMoves :LiveData<Int> =_playerBMoves
 
 
+    /**
+     * set the selected time format
+     */
     fun setFormat(gameTime:Long,increment:Long){
-        startTimeMillis =gameTime
+        startTimeMillis.value =gameTime
+        _increment.value =increment
     }
 
 
-    //private val timer: ChessTimer(startTime,)
     fun startPlayerATimer(){
-        if(isPlayerARunning && isAnyTimerStop){
-            isAnyTimerStop =false
+        if(isPlayerBRunning){
+            isPlayerBRunning =false
+            playerBTimer.cancel()
         }
-        playerATimer.start()
+        else{
+            isPlayerARunning =true
+            playerATimer.start()
+        }
     }
 
     fun startPlayerBTimer(){
-        if(isPlayerARunning && isAnyTimerStop){
+        if(isPlayerARunning ){
             isAnyTimerStop =false
         }
         playerBTimer.start()
@@ -44,14 +75,16 @@ class ClockViewModel : ViewModel() {
         playerATimer.cancel()
         playerBTimer.cancel()
     }
-    fun updatePlayerATimer(){}
-    fun updatePlayerBTimer(){}
+    fun resetClock(){
+
+    }
 
 
-    private val playerATimer = object :CountDownTimer(playerATimeLeft,interval ) {
+    private val playerATimer = object :CountDownTimer(playerATimeLeftMillies.value?.toLong()!!,1000 ) {
         override fun onTick(millisUntilFinished: Long) {
             //every 1000th millisecond the timer updates
-            playerATimeLeft = millisUntilFinished
+            _playerATimeLeftMillies.value = millisUntilFinished
+            _playerAMoves.value = _playerAMoves.value?.plus(1)
 
         }
         override fun onFinish() {
@@ -59,10 +92,12 @@ class ClockViewModel : ViewModel() {
             isAnyTimerStop =true
         }
     }
-    private val playerBTimer = object :CountDownTimer(playerBTimeLeft,interval ) {
+
+    private val playerBTimer = object :CountDownTimer(playerBTimeLeftMillies.value?.toLong()!!,1000 ) {
         override fun onTick(millisUntilFinished: Long) {
             //every 1000th millisecond the timer updates
-            playerBTimeLeft =millisUntilFinished
+            _playerBTimeLeftMillies.value =millisUntilFinished
+            _playerBMoves.value = _playerBMoves.value?.plus(1)
         }
         override fun onFinish() {
             isAnyTimerStop =true

@@ -7,12 +7,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
 import com.example.chessclock.databinding.HomeFragmentBinding
 
 class HomeFragment : Fragment() {
 
     private lateinit var binding: HomeFragmentBinding
-    private val viewModel: ClockViewModel by activityViewModels()
+    private val clockViewModel: ClockViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -22,21 +23,26 @@ class HomeFragment : Fragment() {
         context ?: return binding.root
 
         binding.apply {
-            playerAClock
-            playerBClock
-            startButton.setOnClickListener {
+            lifecycleOwner=this@HomeFragment
+            viewModel=clockViewModel
+        }
+        binding.playerAClock.setOnClickListener {
+            clockViewModel.startPlayerATimer()
+        }
+        binding.playerBClock.setOnClickListener {
+            clockViewModel.startPlayerATimer()
+        }
 
-            }
-            pauseButton.setOnClickListener {
+        binding.startButton.setOnClickListener {
 
-            }
-            settingsButton.setOnClickListener {
-                navigateToChessFormats()
-            }
-            playerAMoves
-            playerBMoves
-            playerATime
-            playerBTime
+        }
+        binding.pauseButton.setOnClickListener {
+            clockViewModel.pauseTimer()
+        }
+
+
+        binding.settingsButton.setOnClickListener {
+            navigateToChessFormats()
         }
 
 
@@ -44,7 +50,7 @@ class HomeFragment : Fragment() {
     }
 
     private fun navigateToChessFormats() {
-        TODO("Not yet implemented")
+        findNavController().navigate(R.id.action_homeFragment_to_chessFormats)
     }
 
 }
