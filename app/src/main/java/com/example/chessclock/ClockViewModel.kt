@@ -65,8 +65,9 @@ class ClockViewModel : ViewModel() {
 
     fun startPlayerBTimer(){
         if(isPlayerARunning ){
-            isAnyTimerStop =false
+            playerATimer.cancel()
         }
+        isPlayerBRunning=true
         playerBTimer.start()
     }
 
