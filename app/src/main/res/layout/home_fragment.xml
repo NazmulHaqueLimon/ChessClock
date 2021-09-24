@@ -23,8 +23,8 @@
             android:layout_marginTop="32dp"
             android:layout_marginEnd="24dp"
             app:cardBackgroundColor="#DF876B"
+
             android:clickable="true"
-            android:onClick=""
             app:cardElevation="10dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -76,7 +76,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="6dp"
                     android:layout_marginBottom="8dp"
-                    android:text="TextView"
+                    android:text="@{viewModel.playerAMoves.toString()}"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/textView" />
@@ -108,7 +108,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="3dp"
                     android:layout_marginTop="8dp"
-                    android:text="TextView"
+                    android:text="@{viewModel.playerBMoves}"
                     android:textStyle="bold"
                     app:layout_constraintStart_toEndOf="@+id/textView2"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -158,32 +158,38 @@
             android:layout_width="88dp"
             android:layout_height="59dp"
             android:layout_marginStart="24dp"
-            android:layout_marginTop="51dp"
+            android:layout_marginTop="8dp"
             android:layout_marginEnd="80dp"
-            android:layout_marginBottom="54dp"
+            android:layout_marginBottom="8dp"
             android:src="@drawable/outline_settings_suggest_20"
             app:layout_constraintBottom_toTopOf="@+id/playerBClock"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toEndOf="@+id/startButton"
             app:layout_constraintTop_toBottomOf="@+id/playerAClock"
-            app:layout_constraintVertical_bias="0.588" />
+            app:layout_constraintVertical_bias="0.458" />
 
         <ImageView
             android:id="@+id/startButton"
             android:layout_width="91dp"
             android:layout_height="62dp"
             android:layout_marginStart="32dp"
+            android:visibility="visible"
+            app:startButtonVisibility="@{viewModel.isGameRunning()}"
             android:src="@drawable/outline_skip_next_24"
             app:layout_constraintBottom_toTopOf="@+id/playerBClock"
             app:layout_constraintStart_toEndOf="@+id/resetButton"
             app:layout_constraintTop_toBottomOf="@+id/playerAClock"
             app:layout_constraintVertical_bias="0.475" />
+
         <ImageView
             android:id="@+id/pauseButton"
             android:layout_width="91dp"
             android:layout_height="62dp"
             android:layout_marginStart="32dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:visibility="invisible"
             android:src="@drawable/outline_skip_next_24"
             app:layout_constraintBottom_toTopOf="@+id/playerBClock"
             app:layout_constraintStart_toEndOf="@+id/resetButton"
@@ -195,6 +201,8 @@
             android:layout_width="82dp"
             android:layout_height="61dp"
             android:layout_marginStart="52dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
             android:onClick="@{()->viewModel.resetClock()}"
             android:src="@drawable/outline_restart_alt_24"
             app:layout_constraintBottom_toTopOf="@+id/playerBClock"

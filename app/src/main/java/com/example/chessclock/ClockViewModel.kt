@@ -31,6 +31,13 @@ class ClockViewModel : ViewModel() {
     val playerBTimeLeftMillies:LiveData<Long> = _playerBTimeLeftMillies
 
 
+    /**
+     * boolean to define if the match running or not...
+     * used for start and pause button to activate or deactivate players timer button
+     */
+    val _isGameRunning =MutableLiveData<Boolean>(false)
+    val isGameRunning:LiveData<Boolean> =_isGameRunning
+
     var isPlayerARunning: Boolean =false
     var isPlayerBRunning :Boolean =false
 
@@ -54,6 +61,7 @@ class ClockViewModel : ViewModel() {
 
     fun startPlayerATimer(){
         if(isPlayerBRunning){
+            //stop 2nd clock before starting the 1st clock
             isPlayerBRunning =false
             playerBTimer.cancel()
         }
@@ -67,8 +75,11 @@ class ClockViewModel : ViewModel() {
         if(isPlayerARunning ){
             playerATimer.cancel()
         }
-        isPlayerBRunning=true
-        playerBTimer.start()
+        else{
+            isPlayerBRunning=true
+            playerBTimer.start()
+        }
+
     }
 
 
@@ -89,7 +100,6 @@ class ClockViewModel : ViewModel() {
 
         }
         override fun onFinish() {
-
             isAnyTimerStop =true
         }
     }

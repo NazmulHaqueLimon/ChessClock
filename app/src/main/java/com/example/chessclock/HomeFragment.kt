@@ -34,9 +34,11 @@ class HomeFragment : Fragment() {
         }
 
         binding.startButton.setOnClickListener {
+            clockViewModel._isGameRunning.value=true
 
         }
         binding.pauseButton.setOnClickListener {
+            clockViewModel._isGameRunning.value =false
             clockViewModel.pauseTimer()
         }
 
