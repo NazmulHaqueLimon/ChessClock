@@ -10,25 +10,25 @@ class ClockViewModel : ViewModel() {
     /**
      * selected clock time
      */
-    private val _gameTime =MutableLiveData<Long>(600000)
+    private val _gameTime =MutableLiveData<Long>()
     private val gameTime:LiveData<Long> =_gameTime
 
     /**
      * clock increment for every move
      */
-    private val _increment =MutableLiveData<Long>(0)
+    private val _increment =MutableLiveData<Long>()
     private val increment:LiveData<Long> =_increment
 
     /**
      * playerA left time....converted in binding adapter
      */
-    private val _playerATimeLeftMillies =MutableLiveData<Long>(600000)
+    private val _playerATimeLeftMillies =MutableLiveData<Long>()
     val playerATimeLeftMillies:LiveData<Long> = _playerATimeLeftMillies
 
     /**
      * playerB left time....converted in binding adapter
      */
-    private val _playerBTimeLeftMillies =MutableLiveData<Long>(600000)
+    private val _playerBTimeLeftMillies =MutableLiveData<Long>()
     val playerBTimeLeftMillies:LiveData<Long> = _playerBTimeLeftMillies
 
 
@@ -69,14 +69,14 @@ class ClockViewModel : ViewModel() {
 
 
     fun startPlayerATimer(){
-        _playerBMoves.value = playerAMoves.value?.plus(1)
-        if(isPlayerBRunning.value == true){
+        _playerBMoves.value = _playerBMoves.value?.plus(1)
+        if(_isPlayerBRunning.value == true){
             //stop 2nd clock
             _isPlayerBRunning.value =false
             playerBTimer.cancel()
             //and add the increment
             _playerBTimeLeftMillies.value =increment.value?.let {
-                playerBTimeLeftMillies.value?.plus(it)
+                _playerBTimeLeftMillies.value?.plus(it)
             }
             //then start the first one
             _isPlayerARunning.value=true
@@ -90,18 +90,17 @@ class ClockViewModel : ViewModel() {
     }
 
     fun startPlayerBTimer(){
-        _playerAMoves.value = playerAMoves.value?.plus(1)
-        if(isPlayerARunning.value == true){
+        _playerAMoves.value = _playerAMoves.value?.plus(1)
+        if(_isPlayerARunning.value == true){
             //stop the first clock
             playerATimer.cancel()
             _isPlayerARunning.value=false
             //and add the increment
             _playerATimeLeftMillies.value = increment.value?.let {
-                playerATimeLeftMillies.value?.plus(
+                _playerATimeLeftMillies.value?.plus(
                     it
                 )
             }
-
 
             //then start the 2nd one
             _isPlayerBRunning.value=true
@@ -117,15 +116,16 @@ class ClockViewModel : ViewModel() {
 
 
     fun pauseTimer(){
-        if (isPlayerARunning.value == true){
-            playerATimer.cancel()
-            playerBTimer.cancel()
-        }
+        _isPlayerARunning.value=false
+        playerATimer.cancel()
+        _isPlayerBRunning.value=false
+        playerBTimer.cancel()
 
     }
     fun resetClock(){
-        _playerATimeLeftMillies.value =gameTime.value
-        _playerBTimeLeftMillies.value =gameTime.value
+
+        _playerATimeLeftMillies.value =_gameTime.value
+        _playerBTimeLeftMillies.value =_gameTime.value
     }
 
 

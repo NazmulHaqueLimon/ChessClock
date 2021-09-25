@@ -7,4 +7,10 @@
     <string name="Blitz">Blitz Chess</string>
     <string name="Bullet">Bullet Chess</string>
     <string name="formats_title">"Select a Time Format to practice and learn to control the time pressure. "</string>
+    <string name="reset">reset</string>
+    <string name="pause">pause</string>
+    <string name="start">start</string>
+    <string name="settings">settings</string>
+    <string name="total_moves">Total Moves :</string>
+
 </resources>

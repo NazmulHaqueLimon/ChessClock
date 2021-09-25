@@ -39,3 +39,22 @@ fun pauseButtonVisibility(view: ImageView,isGameRunning:Boolean){
         view.visibility =View.GONE
     }
 }
+@BindingAdapter("android:clickable")
+fun clickable(view:View,isGameRunning:Boolean){
+    view.isClickable = isGameRunning
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

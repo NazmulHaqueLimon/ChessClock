@@ -43,6 +43,7 @@ class HomeFragment : Fragment() {
 
 
         binding.settingsButton.setOnClickListener {
+            clockViewModel.pauseTimer()
             navigateToChessFormats()
         }
         binding.resetButton.setOnClickListener {
