@@ -22,10 +22,9 @@ class HomeFragment : Fragment() {
         binding= HomeFragmentBinding.inflate(inflater,container,false)
         context ?: return binding.root
 
-        binding.apply {
-            lifecycleOwner=this@HomeFragment
-            viewModel=clockViewModel
-        }
+        binding.lifecycleOwner =this
+        binding.viewModel=clockViewModel
+
         binding.playerAClock.setOnClickListener {
             clockViewModel.startPlayerBTimer()
         }
@@ -45,6 +44,9 @@ class HomeFragment : Fragment() {
 
         binding.settingsButton.setOnClickListener {
             navigateToChessFormats()
+        }
+        binding.resetButton.setOnClickListener {
+            clockViewModel.resetClock()
         }
 
 

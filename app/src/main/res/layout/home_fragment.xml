@@ -28,7 +28,8 @@
             app:cardElevation="10dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toTopOf="parent"
+            android:focusable="true">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -39,7 +40,6 @@
                     android:id="@+id/playerATime"
                     android:layout_width="249dp"
                     android:layout_height="129dp"
-                    android:inputType="time"
                     android:text="00:00"
                     android:textAlignment="center"
                     android:textSize="80sp"
@@ -96,7 +96,8 @@
             app:cardBackgroundColor="#8E96C5"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent">
+            app:layout_constraintStart_toStartOf="parent"
+            android:focusable="true">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -108,7 +109,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="3dp"
                     android:layout_marginTop="8dp"
-                    android:text="@{viewModel.playerBMoves}"
+                    android:text="@{Integer.toString(viewModel.playerBMoves)}"
                     android:textStyle="bold"
                     app:layout_constraintStart_toEndOf="@+id/textView2"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -157,15 +158,14 @@
             android:id="@+id/settingsButton"
             android:layout_width="88dp"
             android:layout_height="59dp"
-            android:layout_marginStart="24dp"
             android:layout_marginTop="8dp"
-            android:layout_marginEnd="80dp"
+            android:layout_marginEnd="60dp"
             android:layout_marginBottom="8dp"
-            android:src="@drawable/outline_settings_suggest_20"
+            android:clickable="true"
+            android:focusable="true"
+            android:src="@drawable/ic_settings_clock"
             app:layout_constraintBottom_toTopOf="@+id/playerBClock"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toEndOf="@+id/startButton"
             app:layout_constraintTop_toBottomOf="@+id/playerAClock"
             app:layout_constraintVertical_bias="0.458" />
 
@@ -173,42 +173,48 @@
             android:id="@+id/startButton"
             android:layout_width="91dp"
             android:layout_height="62dp"
-            android:layout_marginStart="32dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:src="@drawable/ic_play_button_color"
             android:visibility="visible"
-            app:startButtonVisibility="@{viewModel.isGameRunning()}"
-            android:src="@drawable/outline_skip_next_24"
             app:layout_constraintBottom_toTopOf="@+id/playerBClock"
+            app:layout_constraintEnd_toStartOf="@+id/settingsButton"
             app:layout_constraintStart_toEndOf="@+id/resetButton"
             app:layout_constraintTop_toBottomOf="@+id/playerAClock"
-            app:layout_constraintVertical_bias="0.475" />
+            app:layout_constraintVertical_bias="0.475"
+            app:startButtonVisibility="@{viewModel.isGameRunning()}" />
 
         <ImageView
             android:id="@+id/pauseButton"
             android:layout_width="91dp"
-            android:layout_height="62dp"
-            android:layout_marginStart="32dp"
+            android:layout_height="60dp"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:src="@drawable/ic_pause_button_color"
             android:visibility="invisible"
-            android:src="@drawable/outline_skip_next_24"
             app:layout_constraintBottom_toTopOf="@+id/playerBClock"
+            app:layout_constraintEnd_toStartOf="@+id/settingsButton"
             app:layout_constraintStart_toEndOf="@+id/resetButton"
             app:layout_constraintTop_toBottomOf="@+id/playerAClock"
-            app:layout_constraintVertical_bias="0.475" />
+            app:layout_constraintVertical_bias="0.475"
+            app:pauseButtonVisibility="@{viewModel.isGameRunning()}" />
 
         <ImageView
             android:id="@+id/resetButton"
             android:layout_width="82dp"
-            android:layout_height="61dp"
-            android:layout_marginStart="52dp"
+            android:layout_height="60dp"
+            android:layout_marginStart="60dp"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
-            android:onClick="@{()->viewModel.resetClock()}"
-            android:src="@drawable/outline_restart_alt_24"
+            android:clickable="true"
+            android:src="@drawable/ic_reset"
             app:layout_constraintBottom_toTopOf="@+id/playerBClock"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/playerAClock"
-            app:layout_constraintVertical_bias="0.476" />
+            app:layout_constraintVertical_bias="0.476"
+            android:focusable="true" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

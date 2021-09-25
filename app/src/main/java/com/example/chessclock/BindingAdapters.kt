@@ -24,7 +24,7 @@ fun displayTimer(view: TextView,timeInMillis:Long){
 @BindingAdapter("app:startButtonVisibility")
 fun startButtonVisibility(view: ImageView,isGameRunning:Boolean){
     if (isGameRunning){
-        view.visibility = View.INVISIBLE;
+        view.visibility = View.GONE;
     }
     else{
         view.visibility =View.VISIBLE
@@ -36,6 +36,6 @@ fun pauseButtonVisibility(view: ImageView,isGameRunning:Boolean){
         view.visibility = View.VISIBLE;
     }
     else{
-        view.visibility =View.INVISIBLE
+        view.visibility =View.GONE
     }
 }

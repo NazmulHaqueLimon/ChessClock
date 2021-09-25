@@ -10,7 +10,8 @@ class ClockViewModel : ViewModel() {
     /**
      * selected clock time
      */
-    private val startTimeMillis =MutableLiveData<Long>(600000)
+    private val _gameTime =MutableLiveData<Long>(600000)
+    private val gameTime:LiveData<Long> =_gameTime
 
     /**
      * clock increment for every move
@@ -21,13 +22,13 @@ class ClockViewModel : ViewModel() {
     /**
      * playerA left time....converted in binding adapter
      */
-    private val _playerATimeLeftMillies =startTimeMillis
+    private val _playerATimeLeftMillies =MutableLiveData<Long>(600000)
     val playerATimeLeftMillies:LiveData<Long> = _playerATimeLeftMillies
 
     /**
      * playerB left time....converted in binding adapter
      */
-    private val _playerBTimeLeftMillies =startTimeMillis
+    private val _playerBTimeLeftMillies =MutableLiveData<Long>(600000)
     val playerBTimeLeftMillies:LiveData<Long> = _playerBTimeLeftMillies
 
 
@@ -38,10 +39,16 @@ class ClockViewModel : ViewModel() {
     val _isGameRunning =MutableLiveData<Boolean>(false)
     val isGameRunning:LiveData<Boolean> =_isGameRunning
 
-    var isPlayerARunning: Boolean =false
-    var isPlayerBRunning :Boolean =false
+    private val _isPlayerARunning =MutableLiveData<Boolean>(false)
+    val isPlayerARunning:LiveData<Boolean> =_isPlayerARunning
 
-    var isAnyTimerStop : Boolean =false
+    private val _isPlayerBRunning =MutableLiveData<Boolean>(false)
+    val isPlayerBRunning:LiveData<Boolean> =_isPlayerBRunning
+
+
+    private val _isAnyTimerStop=MutableLiveData<Boolean>(false)
+    val isAnyTimerStop:LiveData<Boolean> =_isAnyTimerStop
+
 
     private val _playerAMoves =MutableLiveData<Int>(0)
     val playerAMoves :LiveData<Int> =_playerAMoves
@@ -54,29 +61,55 @@ class ClockViewModel : ViewModel() {
      * set the selected time format
      */
     fun setFormat(gameTime:Long,increment:Long){
-        startTimeMillis.value =gameTime
+        _gameTime.value =gameTime
+        _playerATimeLeftMillies.value =gameTime
+        _playerBTimeLeftMillies.value =gameTime
         _increment.value =increment
     }
 
 
     fun startPlayerATimer(){
-        if(isPlayerBRunning){
-            //stop 2nd clock before starting the 1st clock
-            isPlayerBRunning =false
+        _playerBMoves.value = playerAMoves.value?.plus(1)
+        if(isPlayerBRunning.value == true){
+            //stop 2nd clock
+            _isPlayerBRunning.value =false
             playerBTimer.cancel()
+            //and add the increment
+            _playerBTimeLeftMillies.value =increment.value?.let {
+                playerBTimeLeftMillies.value?.plus(it)
+            }
+            //then start the first one
+            _isPlayerARunning.value=true
+            playerATimer.start()
         }
         else{
-            isPlayerARunning =true
+            //in the beginning simply start the clock
+            _isPlayerARunning.value =true
             playerATimer.start()
         }
     }
 
     fun startPlayerBTimer(){
-        if(isPlayerARunning ){
+        _playerAMoves.value = playerAMoves.value?.plus(1)
+        if(isPlayerARunning.value == true){
+            //stop the first clock
             playerATimer.cancel()
+            _isPlayerARunning.value=false
+            //and add the increment
+            _playerATimeLeftMillies.value = increment.value?.let {
+                playerATimeLeftMillies.value?.plus(
+                    it
+                )
+            }
+
+
+            //then start the 2nd one
+            _isPlayerBRunning.value=true
+            playerBTimer.start()
         }
         else{
-            isPlayerBRunning=true
+            //in the beginning simply start the clock
+            _isPlayerBRunning.value=true
             playerBTimer.start()
         }
 
@@ -84,34 +117,38 @@ class ClockViewModel : ViewModel() {
 
 
     fun pauseTimer(){
-        playerATimer.cancel()
-        playerBTimer.cancel()
+        if (isPlayerARunning.value == true){
+            playerATimer.cancel()
+            playerBTimer.cancel()
+        }
+
     }
     fun resetClock(){
-
+        _playerATimeLeftMillies.value =gameTime.value
+        _playerBTimeLeftMillies.value =gameTime.value
     }
 
 
-    private val playerATimer = object :CountDownTimer(playerATimeLeftMillies.value?.toLong()!!,1000 ) {
+    private val playerATimer = object :CountDownTimer(playerATimeLeftMillies.value!!,1000 ) {
         override fun onTick(millisUntilFinished: Long) {
             //every 1000th millisecond the timer updates
             _playerATimeLeftMillies.value = millisUntilFinished
-            _playerAMoves.value = _playerAMoves.value?.plus(1)
+
 
         }
         override fun onFinish() {
-            isAnyTimerStop =true
+            _isAnyTimerStop.value =true
         }
     }
 
-    private val playerBTimer = object :CountDownTimer(playerBTimeLeftMillies.value?.toLong()!!,1000 ) {
+    private val playerBTimer = object :CountDownTimer(playerBTimeLeftMillies.value!!,1000 ) {
         override fun onTick(millisUntilFinished: Long) {
             //every 1000th millisecond the timer updates
             _playerBTimeLeftMillies.value =millisUntilFinished
-            _playerBMoves.value = _playerBMoves.value?.plus(1)
+
         }
         override fun onFinish() {
-            isAnyTimerStop =true
+            _isAnyTimerStop.value =true
         }
     }
 
