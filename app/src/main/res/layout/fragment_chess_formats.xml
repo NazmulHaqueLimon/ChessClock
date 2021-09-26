@@ -37,9 +37,11 @@
                 android:layout_height="match_parent"
                 android:layout_marginEnd="2dp"
                 android:layout_weight="1"
-                android:focusable="true"
                 android:backgroundTint="#DF876B"
-                android:text="60 min" />
+                android:focusable="true"
+                android:text="60 min"
+                android:textColor="#0C0C0C"
+                android:textStyle="bold" />
 
             <Button
                 android:id="@+id/button_classic_2"
@@ -47,18 +49,22 @@
                 android:layout_height="match_parent"
                 android:layout_marginEnd="2dp"
                 android:layout_weight="1"
-                android:focusable="true"
                 android:backgroundTint="#DF876B"
-                android:text="30 min" />
+                android:focusable="true"
+                android:text="30 min"
+                android:textColor="#100F0F"
+                android:textStyle="bold" />
 
             <Button
                 android:id="@+id/button_classic_3"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:focusable="true"
                 android:backgroundTint="#DF876B"
-                android:text="45 | 45" />
+                android:focusable="true"
+                android:text="45 | 45"
+                android:textColor="#0E0D0D"
+                android:textStyle="bold" />
         </LinearLayout>
 
 
@@ -89,9 +95,11 @@
                 android:layout_height="match_parent"
                 android:layout_marginEnd="2dp"
                 android:layout_weight="1"
-                android:focusable="true"
                 android:backgroundTint="#DF876B"
-                android:text="10 | 5" />
+                android:focusable="true"
+                android:text="10 | 5"
+                android:textColor="#0E0E0E"
+                android:textStyle="bold" />
 
             <Button
                 android:id="@+id/button_rapid_2"
@@ -99,18 +107,22 @@
                 android:layout_height="match_parent"
                 android:layout_marginEnd="2dp"
                 android:layout_weight="1"
-                android:focusable="true"
                 android:backgroundTint="#DF876B"
-                android:text="15 | 10" />
+                android:focusable="true"
+                android:text="15 | 10"
+                android:textColor="#131313"
+                android:textStyle="bold" />
 
             <Button
                 android:id="@+id/button_rapid_3"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:focusable="true"
                 android:backgroundTint="#DF876B"
-                android:text="20 | 5" />
+                android:focusable="true"
+                android:text="20 | 5"
+                android:textColor="#0B0A0A"
+                android:textStyle="bold" />
         </LinearLayout>
 
         <TextView
@@ -140,9 +152,11 @@
                 android:layout_height="match_parent"
                 android:layout_marginEnd="2dp"
                 android:layout_weight="1"
-                android:focusable="true"
                 android:backgroundTint="#DF876B"
-                android:text="5 | 2" />
+                android:focusable="true"
+                android:text="5 | 2"
+                android:textColor="#0C0C0C"
+                android:textStyle="bold" />
 
             <Button
                 android:id="@+id/button_blitz_2"
@@ -150,18 +164,22 @@
                 android:layout_height="match_parent"
                 android:layout_marginEnd="2dp"
                 android:layout_weight="1"
-                android:focusable="true"
                 android:backgroundTint="#DF876B"
-                android:text="3 | 2" />
+                android:focusable="true"
+                android:text="3 | 2"
+                android:textColor="#100F0F"
+                android:textStyle="bold" />
 
             <Button
                 android:id="@+id/button_blitz_3"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:focusable="true"
                 android:backgroundTint="#DF876B"
-                android:text="5 | 5" />
+                android:focusable="true"
+                android:text="5 | 5"
+                android:textColor="#121111"
+                android:textStyle="bold" />
         </LinearLayout>
 
         <TextView
@@ -190,9 +208,11 @@
                 android:layout_height="match_parent"
                 android:layout_marginEnd="2dp"
                 android:layout_weight="1"
-                android:focusable="true"
                 android:backgroundTint="#DF876B"
-                android:text="1 | 2" />
+                android:focusable="true"
+                android:text="1 | 2"
+                android:textColor="#0B0A0A"
+                android:textStyle="bold" />
 
             <Button
                 android:id="@+id/button_bullet_2"
@@ -200,18 +220,22 @@
                 android:layout_height="match_parent"
                 android:layout_marginEnd="2dp"
                 android:layout_weight="1"
-                android:focusable="true"
                 android:backgroundTint="#DF876B"
-                android:text="2 | 1" />
+                android:focusable="true"
+                android:text="2 | 1"
+                android:textColor="#090909"
+                android:textStyle="bold" />
 
             <Button
                 android:id="@+id/button_bullet_3"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:focusable="true"
                 android:backgroundTint="#DF876B"
-                android:text="2 | 2" />
+                android:focusable="true"
+                android:text="2 | 2"
+                android:textColor="#101010"
+                android:textStyle="bold" />
         </LinearLayout>
 
         <ImageView

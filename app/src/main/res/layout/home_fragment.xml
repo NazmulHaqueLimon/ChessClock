@@ -92,7 +92,7 @@
             android:layout_marginBottom="32dp"
             android:clickable="@{viewModel.isGameRunning()}"
             app:cardElevation="10dp"
-            app:cardBackgroundColor="#8E96C5"
+            app:cardBackgroundColor="#8493EA"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

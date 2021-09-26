@@ -26,6 +26,7 @@ class HomeFragment : Fragment() {
         binding.viewModel=clockViewModel
 
         binding.playerAClock.setOnClickListener {
+
             clockViewModel.startPlayerBTimer()
         }
         binding.playerBClock.setOnClickListener {
