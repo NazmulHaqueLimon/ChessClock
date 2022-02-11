@@ -10,7 +10,7 @@ class ClockViewModel: ViewModel() {
     /**
      * selected clock time
      */
-     private val _gameTime =MutableLiveData<Long>()
+     private val _gameTime =MutableLiveData<Long>(360000)
      val gameTime:LiveData<Long> =_gameTime
 
     /**
@@ -22,13 +22,13 @@ class ClockViewModel: ViewModel() {
     /**
      * playerA left time....converted in binding adapter
      */
-    private val _playerATimeLeftMillies  =MutableLiveData<Long>(360000)
+    private val _playerATimeLeftMillies  =MutableLiveData<Long>()
     val playerATimeLeftMillies:LiveData<Long> = _playerATimeLeftMillies
 
     /**
      * playerB left time....converted in binding adapter
      */
-    private val _playerBTimeLeftMillies =MutableLiveData<Long>(360000)
+    private val _playerBTimeLeftMillies =MutableLiveData<Long>()
     val playerBTimeLeftMillies:LiveData<Long> = _playerBTimeLeftMillies
 
     /**
@@ -55,12 +55,22 @@ class ClockViewModel: ViewModel() {
      private val _playerBMoves =MutableLiveData<Int>(0)
      val playerBMoves :LiveData<Int> =_playerBMoves
 
+    private lateinit var chessTimerA :CountDownTimer
+    private lateinit var chessTimerB :CountDownTimer
+
 
     /**
      * set the selected time format
      */
+    fun setDefrault(){
+        _playerATimeLeftMillies.value=gameTime.value
+        _playerBTimeLeftMillies.value=gameTime.value
+        _increment.value =1000
+    }
     fun setFormat(gameTime:Long,increment:Long){
-        _gameTime.value =gameTime
+        _gameTime.value=gameTime
+        _playerAMoves.value =0
+        _playerBMoves.value =0
         _playerATimeLeftMillies.value =gameTime
         _playerBTimeLeftMillies.value =gameTime
         _increment.value =increment
@@ -79,14 +89,16 @@ class ClockViewModel: ViewModel() {
                 _playerBTimeLeftMillies.value?.plus(it)
             }
         }
+        if (isPlayerARunning.value == false){
+            _isPlayerARunning.value =true
+            playerATimeLeftMillies.value?.let { startTimerA(it) }
+        }
         //in the beginning simply start the clock
-        _isPlayerARunning.value =true
-        playerATimeLeftMillies.value?.let { startTimerA(it) }
+
         //playerATimer.start()
 
     }
-    private lateinit var chessTimerA :CountDownTimer
-    private lateinit var chessTimerB :CountDownTimer
+
 
     fun startPlayerBTimer(){
 
@@ -101,10 +113,13 @@ class ClockViewModel: ViewModel() {
             }
         }
 
-        //in the beginning simply start the clock
-        _isPlayerBRunning.value=true
-        playerBTimeLeftMillies.value?.let { startTimerB(it) }
-        //playerBTimer.start()
+        if (isPlayerBRunning.value ==false){
+            _isPlayerBRunning.value=true
+            playerBTimeLeftMillies.value?.let {
+                startTimerB(it)
+            }
+        }
+
     }
 
     private fun startTimerA(startTime:Long){
@@ -143,7 +158,11 @@ class ClockViewModel: ViewModel() {
 
     }
     fun resetClock(){
-
+        if (isGameRunning.value ==true){
+            pauseTimer()
+        }
+        _playerAMoves.value =0
+        _playerBMoves.value =0
         _playerATimeLeftMillies.value =gameTime.value
         _playerBTimeLeftMillies.value =gameTime.value
     }

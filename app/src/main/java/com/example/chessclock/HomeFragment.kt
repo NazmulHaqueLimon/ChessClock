@@ -25,12 +25,16 @@ class HomeFragment : Fragment() {
         binding.lifecycleOwner =this
         binding.viewModel=clockViewModel
 
-        binding.playerAClock.setOnClickListener {
+        clockViewModel.setDefrault()
 
+        binding.playerAClock.setOnClickListener {
             clockViewModel.startPlayerBTimer()
+
         }
         binding.playerBClock.setOnClickListener {
+
             clockViewModel.startPlayerATimer()
+
         }
 
         binding.startButton.setOnClickListener {
@@ -44,10 +48,17 @@ class HomeFragment : Fragment() {
 
 
         binding.settingsButton.setOnClickListener {
-            clockViewModel.pauseTimer()
-            navigateToChessFormats()
+            if (clockViewModel.isGameRunning.value == true){
+                clockViewModel.pauseTimer()
+                navigateToChessFormats()
+            }
+            else{
+                navigateToChessFormats()
+            }
+
         }
         binding.resetButton.setOnClickListener {
+
             clockViewModel.resetClock()
         }
 

@@ -32,14 +32,12 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                >
+                android:layout_height="match_parent">
 
                 <TextView
                     android:id="@+id/playerATime"
                     android:layout_width="249dp"
                     android:layout_height="129dp"
-                    android:text="00:00"
                     android:textAlignment="center"
                     android:textSize="80sp"
                     android:textStyle="bold"
@@ -127,7 +125,7 @@
                     android:layout_width="231dp"
                     android:layout_height="120dp"
                     android:ems="10"
-                    android:text="00:00"
+
                     android:textAlignment="center"
                     android:textSize="80sp"
                     android:textStyle="bold"
